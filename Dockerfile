@@ -42,7 +42,7 @@ COPY transmission.sh /usr/bin/
 EXPOSE 9091 51413/tcp 51413/udp
 
 HEALTHCHECK --interval=60s --timeout=15s \
-            CMD netstat -lntp | grep -q '0\.0\.0\.0:9091'
+            CMD netstat -lntp | grep -q '0\.0\.0\.0:9091' && curl -L 'https://api.ipify.org'
 
 VOLUME ["/var/lib/transmission-daemon"]
 
