@@ -111,6 +111,7 @@ else
     exec su -l transmission -s /bin/bash -c "exec transmission-daemon \
                 --allowed \\* --blocklist --config-dir $dir/info \
                 --foreground --log-info --no-portmap \
-                $([[ ${NOAUTH:-""} ]] && echo '--no-auth' || echo "--auth \
-                --username ${TRUSER:-admin} --password ${TRPASSWD:-admin}")"
+                $([[ ${NOAUTH:-""} ]] && echo '--no-auth') \
+                $([[ -n "${TRUSER:-""}" && -n "${TRPASSWD:-""}" ]] \
+                  && echo "--auth --username ${TRUSER} --password ${TRPASSWD}")"
 fi
